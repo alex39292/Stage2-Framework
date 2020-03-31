@@ -10,28 +10,28 @@ public class IframeCalculatorPage {
     private WebDriver driver;
     private String estimateFromButton;
 
-    @FindBy(id = "input_53")
+    @FindBy(id = "input_55")
     private WebElement numberOfInstances;
 
-    @FindBy(id = "input_54")
+    @FindBy(id = "input_56")
     private WebElement instanceFor;
 
-    @FindBy(id = "select_65")
+    @FindBy(id = "select_value_label_48")
     private WebElement operatingSystem;
 
-    @FindBy(id = "select_value_label_47")
+    @FindBy(id = "select_value_label_49")
     private WebElement vmClass;
 
     @FindBy(xpath = "//div[@class = 'md-container md-ink-ripple']")
     private WebElement addGpu;
 
-    @FindBy(id = "select_172")
+    @FindBy(id = "select_167")
     private WebElement localSsd;
 
-    @FindBy(id = "select_80")
+    @FindBy(id = "select_82")
     private WebElement dataCenterLocation;
 
-    @FindBy(id = "select_87")
+    @FindBy(id = "select_89")
     private WebElement commitedUsage;
 
     @FindBy(xpath = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']")
@@ -49,34 +49,34 @@ public class IframeCalculatorPage {
 
         //Operating System/Software
         operatingSystem.click();
-        driver.findElement(By.id("select_option_55")).click();
+        driver.findElement(By.id("select_option_57")).click();
 
         //Machine Class
         vmClass.click();
-        driver.findElement(By.id("select_option_67")).click();
+        driver.findElement(By.id("select_option_69")).click();
 
         //Machine Type
-        driver.findElement(By.id("select_78")).click();
-        driver.findElement(By.id("select_option_212")).click();
+        driver.findElement(By.id("select_value_label_52")).click();
+        driver.findElement(By.id("select_option_208")).click();
 
         //Add GPU
         addGpu.click();
-        driver.findElement(By.id("select_value_label_353")).click();
-        driver.findElement(By.id("select_option_360")).click();
-        driver.findElement(By.id("select_value_label_354")).click();
-        driver.findElement(By.id("select_option_367")).click();
+        driver.findElement(By.id("select_value_label_326")).click();
+        driver.findElement(By.id("select_option_333")).click();
+        driver.findElement(By.id("select_value_label_327")).click();
+        driver.findElement(By.id("select_option_340")).click();
 
         //Local SSD
         localSsd.click();
-        driver.findElement(By.id("select_option_233")).click();
+        driver.findElement(By.id("select_option_229")).click();
 
-        //Datacenter Location
+        //Data center Location
         dataCenterLocation.click();
-        driver.findElement(By.id("select_option_181")).click();
+        driver.findElement(By.id("select_option_177")).click();
 
         //Committed Usage
         commitedUsage.click();
-        driver.findElement(By.id("select_option_85")).click();
+        driver.findElement(By.id("select_option_87")).click();
 
         //Press button ADD TO ESTIMATE
         button.click();
@@ -94,7 +94,7 @@ public class IframeCalculatorPage {
     }
 
     public void pasteMailAndSend(String mailAddress, String mailPageTab) {
-        driver.findElement(By.id("input_422")).sendKeys(mailAddress);
+        driver.findElement(By.id("input_395")).sendKeys(mailAddress);
         driver.findElement(By.cssSelector("md-dialog-actions.layout-row > button:nth-child(2)")).click();
 
         driver.switchTo().window(mailPageTab);

@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class SearchingCalculatorPage {
     private WebDriver driver;
-    private final String SEARCH_RESULT = "Google Cloud Platform Pricing Calculator | Google Cloud";
+    private final String SEARCH_RESULT = "Google Cloud Platform Pricing Calculator";
 
     public SearchingCalculatorPage(WebDriver driver) {
         this.driver = driver;
