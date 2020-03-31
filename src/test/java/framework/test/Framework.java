@@ -3,10 +3,13 @@ package framework.test;
 import framework.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class Framework {
     private WebDriver driver;
@@ -31,7 +34,7 @@ public class Framework {
         iframeCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());
         tenMinuteMail.clickRecievedMail();
 
-        Assert.assertEquals(iframeCalculatorPage.getEstimateFromButton(),tenMinuteMail.getEstimateFromEmail());
+        assertThat(iframeCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
     }
 
     @AfterTest(alwaysRun = true)
