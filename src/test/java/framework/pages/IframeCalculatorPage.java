@@ -6,9 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class IframeCalculatorPage {
-    private WebDriver driver;
-    private String estimateFromButton;
+public class IframeCalculatorPage extends AbstractPage {
+    private  String estimateFromButton;
 
     @FindBy(id = "input_55")
     private WebElement numberOfInstances;
@@ -38,8 +37,8 @@ public class IframeCalculatorPage {
     private WebElement button;
 
     public IframeCalculatorPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
+        PageFactory.initElements(this.driver,this);
     }
 
     //Add some data to Google Cloud Pricing Calculator form

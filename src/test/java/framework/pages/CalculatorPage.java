@@ -9,18 +9,17 @@ import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
-public class CalculatorPage {
-    private WebDriver driver;
+public class CalculatorPage extends AbstractPage{
 
     public CalculatorPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
+        PageFactory.initElements(this.driver,this);
     }
 
     public IframeCalculatorPage addData() {
 
         for (int i = 0; i<2; i++) {
-            driver.get(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(20))
+            driver.get(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                     .ignoring(NoSuchElementException.class)
                     .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe"))).getAttribute("src"));
         }

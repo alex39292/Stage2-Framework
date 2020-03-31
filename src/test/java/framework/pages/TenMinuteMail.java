@@ -6,13 +6,12 @@ import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
-public class TenMinuteMail {
-    private WebDriver driver;
+public class TenMinuteMail extends AbstractPage{
     private String mailAddress;
     private String mailPageTab;
 
     public TenMinuteMail(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void getMail() {
