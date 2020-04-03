@@ -1,5 +1,6 @@
 package framework.test;
 
+import framework.driver.DriverSingleton;
 import framework.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,9 +18,8 @@ public class Framework {
 
     @BeforeTest
     public void loadPage() {
-        driver = new FirefoxDriver();
+        driver = DriverSingleton.getDriver();
         driver.get(URL);
-        driver.manage().window().maximize();
     }
 
     @Test
@@ -39,7 +39,6 @@ public class Framework {
 
     @AfterTest(alwaysRun = true)
     public void browserClose() {
-        driver.quit();
-        driver = null;
+        DriverSingleton.closeDriver();
     }
 }
