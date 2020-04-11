@@ -1,15 +1,16 @@
 package framework.pages;
 
+import framework.service.TestDataReader;
 import org.openqa.selenium.WebDriver;
 
-public abstract class AbstractPage {
-    protected final String SEARCHING_FIELD = "Google Cloud Platform Pricing Calculator";
+abstract class AbstractPage {
+    final String SEARCHING_FIELD = TestDataReader.getTestData("cloudgoogle.searchingField");
 
-    protected WebDriver driver;
+    WebDriver driver;
 
-    protected final int WAIT_TIMEOUT_SECONDS = 20;
+    final int WAIT_TIMEOUT_SECONDS = 20;
 
-    protected AbstractPage(WebDriver driver) {
+    AbstractPage(WebDriver driver) {
         this.driver = driver;
     }
 }

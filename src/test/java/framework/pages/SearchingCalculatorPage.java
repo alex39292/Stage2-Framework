@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class SearchingCalculatorPage extends AbstractPage{
-    private final String SEARCH_RESULT = "Google Cloud Platform Pricing Calculator";
 
     public SearchingCalculatorPage(WebDriver driver) {
         super(driver);
@@ -20,7 +19,7 @@ public class SearchingCalculatorPage extends AbstractPage{
         new Actions(driver).click(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SEARCH_RESULT))))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SEARCHING_FIELD))))
                 .perform();
 
         return new CalculatorPage(driver);

@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="Framework"   >
         <classes>
-            <class name="com.alex39292.stage2.framework.test.TestFramework" />
+            <class name="com.alex39292.stage2.framework.test.TestCalculatorPage" />
         </classes>
     </test>
 </suite>

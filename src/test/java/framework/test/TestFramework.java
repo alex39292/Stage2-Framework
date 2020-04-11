@@ -4,9 +4,7 @@ import framework.driver.DriverSingleton;
 import framework.pages.*;
 import framework.service.PricingCalculatorCreator;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,7 +14,7 @@ public class TestFramework {
     private WebDriver driver;
     private final String URL = "https://cloud.google.com/";
 
-    @BeforeTest
+    @BeforeMethod
     public void loadPage() {
         driver = DriverSingleton.getDriver();
         driver.get(URL);
@@ -37,7 +35,7 @@ public class TestFramework {
         assertThat(iframeCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void browserClose() {
         DriverSingleton.closeDriver();
     }
