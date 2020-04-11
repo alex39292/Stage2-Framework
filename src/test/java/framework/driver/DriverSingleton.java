@@ -11,7 +11,6 @@ public class DriverSingleton {
 
     public DriverSingleton() {}
 
-    //Доделать все браузеры!
     public static WebDriver getDriver() {
         if (driver == null) {
             switch (System.getProperty("browser")) {

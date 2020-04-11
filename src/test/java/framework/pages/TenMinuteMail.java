@@ -23,7 +23,7 @@ public class TenMinuteMail extends AbstractPage{
         driver.switchTo().window(googlePageTab);
     }
 
-    public void clickRecievedMail() {
+    public void clickReceivedMail() {
         WebElement mail = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(40))
                 .ignoring(NoSuchElementException.class)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='gonderen' and text() = 'Google Cloud Sales']")));

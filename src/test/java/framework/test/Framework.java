@@ -3,7 +3,6 @@ package framework.test;
 import framework.driver.DriverSingleton;
 import framework.pages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -32,7 +31,7 @@ public class Framework {
         TenMinuteMail tenMinuteMail = iframeCalculatorPage.sendMail();
         tenMinuteMail.getMail();
         iframeCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());
-        tenMinuteMail.clickRecievedMail();
+        tenMinuteMail.clickReceivedMail();
 
         assertThat(iframeCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
     }
