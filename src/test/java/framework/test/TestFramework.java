@@ -2,6 +2,7 @@ package framework.test;
 
 import framework.driver.DriverSingleton;
 import framework.pages.*;
+import framework.service.PricingCalculatorCreator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class Framework {
+public class TestFramework {
     private WebDriver driver;
     private final String URL = "https://cloud.google.com/";
 
@@ -27,7 +28,7 @@ public class Framework {
         SearchingCalculatorPage searchedPage = cloudGooglePage.searchCalculator();
         CalculatorPage calculatorPage = searchedPage.openCalculator();
         IframeCalculatorPage iframeCalculatorPage = calculatorPage.addData();
-        iframeCalculatorPage.setEstimateFromButton();
+        iframeCalculatorPage.setEstimateFromButton(PricingCalculatorCreator.withProperty());
         TenMinuteMail tenMinuteMail = iframeCalculatorPage.sendMail();
         tenMinuteMail.getMail();
         iframeCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());

@@ -1,5 +1,6 @@
 package framework.pages;
 
+import framework.model.PricingCalculator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,28 +10,31 @@ import org.openqa.selenium.support.PageFactory;
 public class IframeCalculatorPage extends AbstractPage {
     private  String estimateFromButton;
 
-    @FindBy(id = "input_55")
+    @FindBy(id = "input_56")
     private WebElement numberOfInstances;
 
-    @FindBy(id = "input_56")
+    @FindBy(id = "input_57")
     private WebElement instanceFor;
 
-    @FindBy(id = "select_value_label_48")
+    @FindBy(id = "select_value_label_49")
     private WebElement operatingSystem;
 
-    @FindBy(id = "select_value_label_49")
+    @FindBy(id = "select_value_label_50")
     private WebElement vmClass;
+
+    @FindBy(id = "select_81")
+    private WebElement machineType;
 
     @FindBy(xpath = "//div[@class = 'md-container md-ink-ripple']")
     private WebElement addGpu;
 
-    @FindBy(id = "select_167")
+    @FindBy(id = "select_168")
     private WebElement localSsd;
 
-    @FindBy(id = "select_82")
+    @FindBy(id = "select_83")
     private WebElement dataCenterLocation;
 
-    @FindBy(id = "select_89")
+    @FindBy(id = "select_90")
     private WebElement commitedUsage;
 
     @FindBy(xpath = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']")
@@ -42,40 +46,40 @@ public class IframeCalculatorPage extends AbstractPage {
     }
 
     //Add some data to Google Cloud Pricing Calculator form
-    private void addToEstimate() {
-        numberOfInstances.sendKeys("4");
-        instanceFor.clear();
+    private void addToEstimate(PricingCalculator calculator) {
+        numberOfInstances.sendKeys(calculator.getNumberOfInstances());
+        instanceFor.sendKeys(calculator.getText());
 
         //Operating System/Software
         operatingSystem.click();
-        driver.findElement(By.id("select_option_57")).click();
+        driver.findElement(By.id(calculator.getOperatingSystem())).click();
 
         //Machine Class
         vmClass.click();
-        driver.findElement(By.id("select_option_69")).click();
+        driver.findElement(By.id(calculator.getMachineClass())).click();
 
         //Machine Type
-        driver.findElement(By.id("select_value_label_52")).click();
-        driver.findElement(By.id("select_option_208")).click();
+        machineType.click();
+        driver.findElement(By.id(calculator.getMachineType())).click();
 
         //Add GPU
         addGpu.click();
-        driver.findElement(By.id("select_value_label_326")).click();
-        driver.findElement(By.id("select_option_333")).click();
         driver.findElement(By.id("select_value_label_327")).click();
-        driver.findElement(By.id("select_option_340")).click();
+        driver.findElement(By.id(calculator.getNumberOfGPU())).click();
+        driver.findElement(By.id("select_value_label_328")).click();
+        driver.findElement(By.id(calculator.getGPUType())).click();
 
         //Local SSD
         localSsd.click();
-        driver.findElement(By.id("select_option_229")).click();
+        driver.findElement(By.id(calculator.getLocalSSD())).click();
 
         //Data center Location
         dataCenterLocation.click();
-        driver.findElement(By.id("select_option_177")).click();
+        driver.findElement(By.id(calculator.getDatacenterLocation())).click();
 
         //Committed Usage
         commitedUsage.click();
-        driver.findElement(By.id("select_option_87")).click();
+        driver.findElement(By.id(calculator.getCommitedUsage())).click();
 
         //Press button ADD TO ESTIMATE
         button.click();
@@ -86,14 +90,14 @@ public class IframeCalculatorPage extends AbstractPage {
         return new TenMinuteMail(driver);
     }
 
-    public void setEstimateFromButton() {
-        addToEstimate();
+    public void setEstimateFromButton(PricingCalculator calculator) {
+        addToEstimate(calculator);
         estimateFromButton = driver.findElement(By.xpath("//b[@class = 'ng-binding']")).getText();
         estimateFromButton = estimateFromButton.substring(estimateFromButton.lastIndexOf("USD") + 4,estimateFromButton.indexOf("per")).trim();
     }
 
     public void pasteMailAndSend(String mailAddress, String mailPageTab) {
-        driver.findElement(By.id("input_395")).sendKeys(mailAddress);
+        driver.findElement(By.id("input_396")).sendKeys(mailAddress);
         driver.findElement(By.cssSelector("md-dialog-actions.layout-row > button:nth-child(2)")).click();
 
         driver.switchTo().window(mailPageTab);

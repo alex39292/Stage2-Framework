@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class CloudGoogle extends AbstractPage{
-    private final String SEARCHING_FIELD = "Google Cloud Platform Pricing Calculator";
 
     public CloudGoogle(WebDriver driver) {
         super(driver);

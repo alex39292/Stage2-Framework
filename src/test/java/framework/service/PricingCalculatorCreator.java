@@ -3,16 +3,16 @@ package framework.service;
 import framework.model.PricingCalculator;
 
 public class PricingCalculatorCreator {
-    public static final String TEST_NUMBER_OF_INSTANCES = "calculator.numberOfInstances";
-    public static final String TEST_TEXT = "calculator.test";
-    public static final String TEST_OPERATING_SYSTEM = "calculator.operatingSystem";
-    public static final String TEST_MACHINE_CLASS = "calculator.machineClass";
-    public static final String TEST_MACHINE_TYPE = "calculator.machineType";
-    public static final String TEST_NUMBER_OF_GPU = "calculator.numberOfGPU";
-    public static final String TEST_GPU_TYPE = "calculator.GPUType";
-    public static final String TEST_LOCAL_SSD = "calculator.localSSD";
-    public static final String TEST_DATACENTER_LOCATION = "calculator.datacenterLocation";
-    public static final String TEST_COMMITED_USAGE = "calculator.commitedUsage";
+    private static final String TEST_NUMBER_OF_INSTANCES = "calculator.numberOfInstances";
+    private static final String TEST_TEXT = "calculator.test";
+    private static final String TEST_OPERATING_SYSTEM = "calculator.operatingSystem";
+    private static final String TEST_MACHINE_CLASS = "calculator.machineClass";
+    private static final String TEST_MACHINE_TYPE = "calculator.machineType";
+    private static final String TEST_NUMBER_OF_GPU = "calculator.numberOfGPU";
+    private static final String TEST_GPU_TYPE = "calculator.GPUType";
+    private static final String TEST_LOCAL_SSD = "calculator.localSSD";
+    private static final String TEST_DATACENTER_LOCATION = "calculator.datacenterLocation";
+    private static final String TEST_COMMITED_USAGE = "calculator.commitedUsage";
 
     public static PricingCalculator withProperty() {
         return new PricingCalculator()

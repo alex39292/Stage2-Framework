@@ -17,14 +17,17 @@ public class DriverSingleton {
                 case "firefox" : {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
                 }
                 case "chrome" : {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
                 }
                 default: {
                     WebDriverManager.operadriver().setup();
                     driver = new OperaDriver();
+                    break;
                 }
             }
             driver.manage().window().maximize();
