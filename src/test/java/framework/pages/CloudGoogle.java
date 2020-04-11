@@ -1,5 +1,7 @@
 package framework.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class CloudGoogle extends AbstractPage{
+    private final Logger logger = LogManager.getRootLogger();
 
     public CloudGoogle(WebDriver driver) {
         super(driver);
@@ -22,7 +25,7 @@ public class CloudGoogle extends AbstractPage{
                 .until(ExpectedConditions.visibilityOfElementLocated(By.name("q"))))
                 .sendKeys(SEARCHING_FIELD)
                 .sendKeys(Keys.ENTER).perform();
-
+        logger.info("Searching started");
         return new SearchingCalculatorPage(driver);
     }
 }
