@@ -95,10 +95,11 @@ public class IframeCalculatorPage extends AbstractPage {
         return new TenMinuteMail(driver);
     }
 
-    public void setEstimateFromButton(PricingCalculator calculator) {
+    public IframeCalculatorPage setEstimateFromButton(PricingCalculator calculator) {
         addToEstimate(calculator);
         estimateFromButton = driver.findElement(By.xpath("//b[@class = 'ng-binding']")).getText();
         estimateFromButton = estimateFromButton.substring(estimateFromButton.lastIndexOf("USD") + 4,estimateFromButton.indexOf("per")).trim();
+        return this;
     }
 
     public void pasteMailAndSend(String mailAddress, String mailPageTab) {

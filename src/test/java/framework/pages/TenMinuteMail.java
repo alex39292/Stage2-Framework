@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class TenMinuteMail extends AbstractPage{
+    private final String URL = "https://lroid.com/ru/";
     private String mailAddress;
     private String mailPageTab;
 
@@ -17,7 +18,7 @@ public class TenMinuteMail extends AbstractPage{
     public void getMail() {
         String googlePageTab = driver.getWindowHandle();
         driver.switchTo().newWindow(WindowType.TAB);
-        driver.get("https://lroid.com/ru/");
+        driver.navigate().to(URL);
         mailPageTab = driver.getWindowHandle();
         mailAddress = driver.findElement(By.id("eposta_adres")).getAttribute("value");
         driver.switchTo().window(googlePageTab);
