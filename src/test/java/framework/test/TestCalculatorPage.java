@@ -11,7 +11,7 @@ public class TestCalculatorPage extends CommonConditions{
     public void cloudPlatformCalculatorTest() {
         new CalculatorPage(driver)
                 .openPage()
-                .addData()
+                .switchToFrame()
                 .setEstimateFromButton(PricingCalculatorCreator.withProperty());
 
         Assert.assertTrue(true);

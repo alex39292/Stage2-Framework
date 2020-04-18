@@ -19,6 +19,7 @@ public class TenMinuteMail extends AbstractPage{
         String googlePageTab = driver.getWindowHandle();
         driver.switchTo().newWindow(WindowType.TAB);
         driver.navigate().to(URL);
+        logger.info("New page with mail agent has been opened");
         mailPageTab = driver.getWindowHandle();
         mailAddress = driver.findElement(By.id("eposta_adres")).getAttribute("value");
         driver.switchTo().window(googlePageTab);
@@ -31,6 +32,7 @@ public class TenMinuteMail extends AbstractPage{
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();"
                 ,mail);
         mail.click();
+        logger.info("New mail message has been clicked");
     }
 
     public String getMailAddress() {
@@ -46,6 +48,7 @@ public class TenMinuteMail extends AbstractPage{
         String mail =  driver.findElement(
                 By.xpath("//table[@class = 'quote']/tbody/tr[2]/td[2]/h3")).getText();
                 mail = mail.replaceAll("[a-zA-Zа]*", "").trim();
+        logger.info("Data has been received from mail message");        
         return mail;
     }
 }

@@ -1,7 +1,7 @@
 package framework.test;
 
 import framework.pages.CloudGoogle;
-import framework.pages.IframeCalculatorPage;
+import framework.pages.FrameCalculatorPage;
 import framework.pages.TenMinuteMail;
 import framework.service.PricingCalculatorCreator;
 import org.testng.annotations.Test;
@@ -14,18 +14,18 @@ public class TestFramework extends CommonConditions{
 
     @Test
     public void cloudPlatformCalculatorTest() {
-        IframeCalculatorPage iframeCalculatorPage = new CloudGoogle(driver)
+        FrameCalculatorPage frameCalculatorPage = new CloudGoogle(driver)
                 .openPage()
                 .searchCalculator()
                 .openCalculator()
-                .addData()
+                .switchToFrame()
                 .setEstimateFromButton(PricingCalculatorCreator.withProperty());
 
-        TenMinuteMail tenMinuteMail = iframeCalculatorPage.sendMail();
+        TenMinuteMail tenMinuteMail = frameCalculatorPage.sendMail();
         tenMinuteMail.getMail();
-        iframeCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());
+        frameCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());
         tenMinuteMail.clickReceivedMail();
 
-        assertThat(iframeCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
+        assertThat(frameCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
     }
 }

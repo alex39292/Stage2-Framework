@@ -4,7 +4,7 @@ import framework.model.PricingCalculator;
 
 public class PricingCalculatorCreator {
     private static final String TEST_NUMBER_OF_INSTANCES = "calculator.numberOfInstances";
-    private static final String TEST_TEXT = "calculator.test";
+    private static final String TEST_TEXT = "calculator.text";
     private static final String TEST_OPERATING_SYSTEM = "calculator.operatingSystem";
     private static final String TEST_MACHINE_CLASS = "calculator.machineClass";
     private static final String TEST_MACHINE_TYPE = "calculator.machineType";

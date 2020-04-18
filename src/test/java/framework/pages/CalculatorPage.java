@@ -1,8 +1,6 @@
 package framework.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -14,16 +12,28 @@ public class CalculatorPage extends AbstractPage{
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver,this);
     }
 
-    public IframeCalculatorPage addData() {
-        for (int i = 0; i<2; i++) {
+    private boolean existsElement(By by) {
+        try {
+            new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+                    .until(ExpectedConditions.visibilityOfElementLocated(by));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public FrameCalculatorPage switchToFrame() {
+        logger.info("Calculator page has been opened");
+        while(existsElement(By.tagName("iframe"))) {
+            logger.info("Switching iframes");
             driver.get(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                     .ignoring(NoSuchElementException.class)
                     .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe"))).getAttribute("src"));
         }
-        return new IframeCalculatorPage(driver);
+        logger.info("Switched to needed iframe");
+        return new FrameCalculatorPage(driver);
     }
 
     public CalculatorPage openPage() {

@@ -1,18 +1,11 @@
 package framework.pages;
 
 import framework.model.PricingCalculator;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 
-import java.time.Duration;
-
-public class IframeCalculatorPage extends AbstractPage {
+public class FrameCalculatorPage extends AbstractPage {
     private String estimateFromButton;
 
     @FindBy(id = "input_56")
@@ -45,7 +38,7 @@ public class IframeCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']")
     private WebElement button;
 
-    public IframeCalculatorPage(WebDriver driver) {
+    public FrameCalculatorPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver,this);
     }
@@ -88,6 +81,7 @@ public class IframeCalculatorPage extends AbstractPage {
 
         //Press button ADD TO ESTIMATE
         button.click();
+        logger.info("Button Add to estimate has been pressed");
     }
 
     public TenMinuteMail sendMail() {
@@ -95,10 +89,11 @@ public class IframeCalculatorPage extends AbstractPage {
         return new TenMinuteMail(driver);
     }
 
-    public IframeCalculatorPage setEstimateFromButton(PricingCalculator calculator) {
+    public FrameCalculatorPage setEstimateFromButton(PricingCalculator calculator) {
         addToEstimate(calculator);
         estimateFromButton = driver.findElement(By.xpath("//b[@class = 'ng-binding']")).getText();
         estimateFromButton = estimateFromButton.substring(estimateFromButton.lastIndexOf("USD") + 4,estimateFromButton.indexOf("per")).trim();
+        logger.info("The estimate data from button has been taken");
         return this;
     }
 
