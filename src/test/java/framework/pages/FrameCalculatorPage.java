@@ -77,7 +77,7 @@ public class FrameCalculatorPage extends AbstractPage {
 
         //Committed Usage
         commitedUsage.click();
-        driver.findElement(By.id(calculator.getCommitedUsage())).click();
+        driver.findElement(By.id(calculator.getCommittedUsage())).click();
 
         //Press button ADD TO ESTIMATE
         button.click();
@@ -100,8 +100,10 @@ public class FrameCalculatorPage extends AbstractPage {
     public void pasteMailAndSend(String mailAddress, String mailPageTab) {
         driver.findElement(By.id("input_396")).sendKeys(mailAddress);
         driver.findElement(By.cssSelector("md-dialog-actions.layout-row > button:nth-child(2)")).click();
+        logger.info("The mail has been sent");
 
         driver.switchTo().window(mailPageTab);
+        logger.info("Switched to Mail Page");
     }
 
     public String getEstimateFromButton() {

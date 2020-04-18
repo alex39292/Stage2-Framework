@@ -10,7 +10,7 @@ public class PricingCalculator {
     private String GPUType;
     private String localSSD;
     private String datacenterLocation;
-    private String commitedUsage;
+    private String committedUsage;
 
     public String getNumberOfInstances() {
         return numberOfInstances;
@@ -93,12 +93,12 @@ public class PricingCalculator {
         return this;
     }
 
-    public String getCommitedUsage() {
-        return commitedUsage;
+    public String getCommittedUsage() {
+        return committedUsage;
     }
 
-    public PricingCalculator setCommitedUsage(String commitedUsage) {
-        this.commitedUsage = commitedUsage;
+    public PricingCalculator setCommittedUsage(String committedUsage) {
+        this.committedUsage = committedUsage;
         return this;
     }
 }

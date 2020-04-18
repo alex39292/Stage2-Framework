@@ -25,6 +25,6 @@ public class PricingCalculatorCreator {
                 .setGPUType(TestDataReader.getTestData(TEST_GPU_TYPE))
                 .setLocalSSD(TestDataReader.getTestData(TEST_LOCAL_SSD))
                 .setDatacenterLocation(TestDataReader.getTestData(TEST_DATACENTER_LOCATION))
-                .setCommitedUsage(TestDataReader.getTestData(TEST_COMMITED_USAGE));
+                .setCommittedUsage(TestDataReader.getTestData(TEST_COMMITED_USAGE));
     }
 }
