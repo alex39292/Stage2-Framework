@@ -48,7 +48,7 @@ public class TenMinuteMail extends AbstractPage{
         String mail =  driver.findElement(
                 By.xpath("//table[@class = 'quote']/tbody/tr[2]/td[2]/h3")).getText();
                 mail = mail.replaceAll("[a-zA-Zа]*", "").trim();
-        logger.info("Data has been received from mail message");        
+        logger.info("Data has been received from mail message");
         return mail;
     }
 }
