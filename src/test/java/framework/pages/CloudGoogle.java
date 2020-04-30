@@ -24,6 +24,7 @@ public class CloudGoogle extends AbstractPage{
                 .sendKeys(SEARCHING_FIELD)
                 .sendKeys(Keys.ENTER).perform();
         logger.info("Searching started");
+
         return new SearchingCalculatorPage(driver);
     }
 

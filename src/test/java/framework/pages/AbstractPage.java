@@ -12,6 +12,7 @@ abstract class AbstractPage {
     WebDriver driver;
 
     final int WAIT_TIMEOUT_SECONDS = 20;
+    final int DOUBLEWAIT_TIMEOUT_SECONDS = 40;
 
     AbstractPage(WebDriver driver) {
         this.driver = driver;

@@ -26,7 +26,7 @@ public class TenMinuteMail extends AbstractPage{
     }
 
     public void clickReceivedMail() {
-        WebElement mail = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS*2))
+        WebElement mail = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='gonderen' and text() = 'Google Cloud Sales']")));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();"

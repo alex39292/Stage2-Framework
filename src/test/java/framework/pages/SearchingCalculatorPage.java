@@ -3,7 +3,6 @@ package framework.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
@@ -16,11 +15,9 @@ public class SearchingCalculatorPage extends AbstractPage{
     }
 
     public CalculatorPage openCalculator() {
-        new Actions(driver).click(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofSeconds(1))
+        new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SEARCHING_FIELD))))
-                .perform();
+                .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SEARCHING_FIELD))).click();
 
         return new CalculatorPage(driver);
     }

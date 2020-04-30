@@ -1,38 +1,40 @@
 package framework.pages;
 
 import framework.model.PricingCalculator;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FrameCalculatorPage extends AbstractPage {
     private String estimateFromButton;
 
-    @FindBy(id = "input_56")
+    @FindBy(xpath = "//input[@type=\"number\"]")
     private WebElement numberOfInstances;
 
-    @FindBy(id = "input_57")
+    @FindBy(id = "input_59")
     private WebElement instanceFor;
 
-    @FindBy(id = "select_value_label_49")
+    @FindBy(id = "select_value_label_51")
     private WebElement operatingSystem;
 
-    @FindBy(id = "select_value_label_50")
+    @FindBy(id = "select_value_label_52")
     private WebElement vmClass;
 
-    @FindBy(id = "select_81")
+    @FindBy(id = "select_83")
     private WebElement machineType;
 
     @FindBy(xpath = "//div[@class = 'md-container md-ink-ripple']")
     private WebElement addGpu;
 
-    @FindBy(id = "select_168")
+    @FindBy(id = "select_170")
     private WebElement localSsd;
 
-    @FindBy(id = "select_83")
+    @FindBy(id = "select_85")
     private WebElement dataCenterLocation;
 
-    @FindBy(id = "select_90")
+    @FindBy(id = "select_92")
     private WebElement commitedUsage;
 
     @FindBy(xpath = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']")
@@ -62,9 +64,9 @@ public class FrameCalculatorPage extends AbstractPage {
 
         //Add GPU
         addGpu.click();
-        driver.findElement(By.id("select_value_label_327")).click();
+        driver.findElement(By.id("select_value_label_332")).click();
         driver.findElement(By.id(calculator.getNumberOfGPU())).click();
-        driver.findElement(By.id("select_value_label_328")).click();
+        driver.findElement(By.id("select_value_label_333")).click();
         driver.findElement(By.id(calculator.getGPUType())).click();
 
         //Local SSD
@@ -98,7 +100,7 @@ public class FrameCalculatorPage extends AbstractPage {
     }
 
     public void pasteMailAndSend(String mailAddress, String mailPageTab) {
-        driver.findElement(By.id("input_396")).sendKeys(mailAddress);
+        driver.findElement(By.xpath("//input[@type=\"email\"]")).sendKeys(mailAddress);
         driver.findElement(By.cssSelector("md-dialog-actions.layout-row > button:nth-child(2)")).click();
         logger.info("The mail has been sent");
 
