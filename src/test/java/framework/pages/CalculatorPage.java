@@ -18,8 +18,8 @@ public class CalculatorPage extends AbstractPage{
     public FrameCalculatorPage switchToFrame() {
         logger.info("Calculator page has been opened");
           while(existsElement(By.tagName("iframe"))) {
-              //if (driver.findElement(By.tagName("iframe")).getAttribute("id").equals("MyFrame"))
-              //    break;
+              if (driver.findElement(By.tagName("iframe")).getAttribute("id").equals("MyFrame"))
+                  break;
               logger.info("Switching iframes");
               driver.get(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                       .ignoring(NoSuchElementException.class)
