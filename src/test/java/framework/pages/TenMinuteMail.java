@@ -26,12 +26,10 @@ public class TenMinuteMail extends AbstractPage{
     }
 
     public void clickReceivedMail() {
-        WebElement mail = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS))
+        new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='gonderen' and text() = 'Google Cloud Sales']")));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();"
-                ,mail);
-        mail.click();
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='gonderen' and text() = 'Google Cloud Sales']")))
+                .click();
         logger.info("New mail message has been clicked");
     }
 
@@ -44,11 +42,10 @@ public class TenMinuteMail extends AbstractPage{
     }
 
     public String getEstimateFromEmail() {
-        driver.switchTo().frame(driver.findElement(By.id("iframe")));
-        String mail =  driver.findElement(
-                By.xpath("//table[@class = 'quote']/tbody/tr[2]/td[2]/h3")).getText();
-                mail = mail.replaceAll("[a-zA-Zа]*", "").trim();
+        driver.switchTo().frame(0);
         logger.info("Data has been received from mail message");
-        return mail;
+
+        return driver.findElement(By.xpath("//table[@class = 'quote']/tbody/tr[2]/td[2]/h3"))
+                .getText().replaceAll("[a-zA-Zа]*", "").trim();
     }
 }
