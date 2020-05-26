@@ -15,7 +15,7 @@ public class SearchingCalculatorPage extends AbstractPage{
     }
 
     public CalculatorPage openCalculator() {
-        new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS))
+        new FluentWait<>(driver).withTimeout(Duration.ofSeconds(DOUBLEWAIT_TIMEOUT_SECONDS*2))
                 .ignoring(NoSuchElementException.class)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SEARCHING_FIELD))).click();
 
