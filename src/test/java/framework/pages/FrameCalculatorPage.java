@@ -2,15 +2,20 @@ package framework.pages;
 
 import framework.model.PricingCalculator;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import java.time.Duration;
 
 public class FrameCalculatorPage extends AbstractPage {
     private String estimateFromButton;
 
-    @FindBy(xpath = "//input[@type=\"number\"]")
+    //@FindBy(id = "input_58")
     private WebElement numberOfInstances;
 
     @FindBy(id = "input_59")
@@ -35,7 +40,7 @@ public class FrameCalculatorPage extends AbstractPage {
     private WebElement dataCenterLocation;
 
     @FindBy(id = "select_92")
-    private WebElement commitedUsage;
+    private WebElement committedUsage;
 
     @FindBy(xpath = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']")
     private WebElement button;
@@ -47,6 +52,13 @@ public class FrameCalculatorPage extends AbstractPage {
 
     //Add some data to Google Cloud Pricing Calculator form
     private void addToEstimate(PricingCalculator calculator) {
+        if (existsElement(By.id("input_58"))) {
+            numberOfInstances = driver.findElement(By.id("input_58"));
+        }
+        else{
+            logger.info("No such element exception with firs selector\"input_58\"");
+            throw new NoSuchElementException("");
+        }
         numberOfInstances.sendKeys(calculator.getNumberOfInstances());
         instanceFor.sendKeys(calculator.getText());
 
@@ -78,7 +90,7 @@ public class FrameCalculatorPage extends AbstractPage {
         driver.findElement(By.id(calculator.getDatacenterLocation())).click();
 
         //Committed Usage
-        commitedUsage.click();
+        committedUsage.click();
         driver.findElement(By.id(calculator.getCommittedUsage())).click();
 
         //Press button ADD TO ESTIMATE
@@ -110,5 +122,15 @@ public class FrameCalculatorPage extends AbstractPage {
 
     public String getEstimateFromButton() {
         return estimateFromButton;
+    }
+
+    private boolean existsElement(By by) {
+        try {
+            new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+                    .until(ExpectedConditions.visibilityOfElementLocated(by));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 }
