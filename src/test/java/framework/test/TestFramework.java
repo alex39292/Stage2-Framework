@@ -2,7 +2,7 @@ package framework.test;
 
 import framework.pages.CloudGoogle;
 import framework.pages.FrameCalculatorPage;
-import framework.pages.TenMinuteMail;
+import framework.pages.MailHandler;
 import framework.service.PricingCalculatorCreator;
 import org.testng.annotations.Test;
 
@@ -21,11 +21,11 @@ public class TestFramework extends CommonConditions{
                 .switchToFrame()
                 .setEstimateFromButton(PricingCalculatorCreator.withProperty());
 
-        TenMinuteMail tenMinuteMail = frameCalculatorPage.sendMail();
-        tenMinuteMail.getMail();
-        frameCalculatorPage.pasteMailAndSend(tenMinuteMail.getMailAddress(),tenMinuteMail.getMailPageTab());
-        tenMinuteMail.clickReceivedMail();
+        MailHandler mailHandler = frameCalculatorPage.sendMail();
+        mailHandler.getMail();
+        frameCalculatorPage.pasteMailAndSend(mailHandler.getMailAddress(),mailHandler.getMailPageTab());
+        mailHandler.clickReceivedMail();
 
-        assertThat(frameCalculatorPage.getEstimateFromButton(), is(equalTo(tenMinuteMail.getEstimateFromEmail())));
+        assertThat(frameCalculatorPage.getEstimateFromButton(), is(equalTo(mailHandler.getEstimateFromEmail())));
     }
 }

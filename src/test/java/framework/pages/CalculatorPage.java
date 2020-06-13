@@ -1,15 +1,9 @@
 package framework.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-
-import java.time.Duration;
+import org.openqa.selenium.WebElement;
 
 public class CalculatorPage extends AbstractPage{
-    private final String URL = "https://cloud.google.com/products/calculator";
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
@@ -17,30 +11,20 @@ public class CalculatorPage extends AbstractPage{
 
     public FrameCalculatorPage switchToFrame() {
         logger.info("Calculator page has been opened");
-          while(existsElement(By.tagName("iframe"))) {
-              if (driver.findElement(By.tagName("iframe")).getAttribute("id").equals("MyFrame"))
+
+          while(existsElement(IFRAME, driver)) {
+              if (driver.findElement(IFRAME).getAttribute("id").equals("MyFrame"))
                   break;
               logger.info("Switching iframes");
-              driver.get(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                      .ignoring(NoSuchElementException.class)
-                      .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe"))).getAttribute("src"));
+              driver.get(((WebElement) getElement(IFRAME, driver)).getAttribute("src"));
           }
-        logger.info("Switched to needed iframe");
+          logger.info("Switched to needed iframe");
+
         return new FrameCalculatorPage(driver);
     }
 
     public CalculatorPage openPage() {
-        driver.navigate().to(URL);
+        driver.navigate().to(URL_TO_GOOGLE_CALCULATOR);
         return this;
-    }
-
-    private boolean existsElement(By by) {
-        try {
-            new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                    .until(ExpectedConditions.visibilityOfElementLocated(by));
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-        return true;
     }
 }

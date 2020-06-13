@@ -2,34 +2,27 @@ package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-
-import java.time.Duration;
 
 public class CloudGoogle extends AbstractPage{
-    private final String URL = "https://cloud.google.com/";
 
     public CloudGoogle(WebDriver driver) {
         super(driver);
     }
 
-    public SearchingCalculatorPage searchCalculator() {
-        new Actions(driver).click(new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .ignoring(NoSuchElementException.class)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.name("q"))))
-                .sendKeys(SEARCHING_FIELD)
+    public SearchCalculatorPage searchCalculator() {
+        new Actions(driver).click((WebElement) getElement(By.name(SEARCH_FIELD), driver))
+                .sendKeys(SEARCHING_TEXT)
                 .sendKeys(Keys.ENTER).perform();
         logger.info("Searching started");
 
-        return new SearchingCalculatorPage(driver);
+        return new SearchCalculatorPage(driver);
     }
 
     public CloudGoogle openPage() {
-        driver.navigate().to(URL);
+        driver.navigate().to(URL_TO_GOOGLE);
         return this;
     }
 }
