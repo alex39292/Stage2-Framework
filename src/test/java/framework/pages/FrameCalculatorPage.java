@@ -7,10 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-
-import java.time.Duration;
 
 public class FrameCalculatorPage extends AbstractPage {
     private String estimateFromButton;
@@ -122,15 +118,5 @@ public class FrameCalculatorPage extends AbstractPage {
 
     public String getEstimateFromButton() {
         return estimateFromButton;
-    }
-
-    private boolean existsElement(By by) {
-        try {
-            new FluentWait<>(driver).withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                    .until(ExpectedConditions.visibilityOfElementLocated(by));
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-        return true;
     }
 }
