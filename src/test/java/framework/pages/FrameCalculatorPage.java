@@ -76,9 +76,9 @@ public class FrameCalculatorPage extends AbstractPage {
 
         //Add GPU
         addGpu.click();
-        driver.findElement(By.id("select_value_label_332")).click();
+        driver.findElement(By.id("select_value_label_335")).click();
         driver.findElement(By.id(calculator.getNumberOfGPU())).click();
-        driver.findElement(By.id("select_value_label_333")).click();
+        driver.findElement(By.id("select_value_label_336")).click();
         driver.findElement(By.id(calculator.getGPUType())).click();
 
         //Local SSD
