@@ -41,40 +41,54 @@ public class FrameCalculatorPage extends AbstractPage {
         //Operation System/Software
         WebElement operationSystem = getElement(By.id(OPERATION_SYSTEM),driver);
         operationSystem.click();
-        driver.findElement(By.id(calculator.getOperatingSystem())).click();
+        driver.findElement(By.xpath("//div[contains(text(),\""+ calculator.getOperationSystem() + "\")]/parent::md-option")).click();
+        logger.info("Select operation system");
 
         //Machine Class
         WebElement vmClass = getElement(By.id(VM_CLASS),driver);
         vmClass.click();
-        driver.findElement(By.id(calculator.getMachineClass())).click();
+        driver.findElements(By.xpath("//div[contains(text(),\"" + calculator.getMachineClass() + "\")]/parent::md-option"))
+        .get(1).click();
+        logger.info("Select VM class");
 
         //Machine Type
         WebElement machineType = getElement(By.id(MACHINE_TYPE),driver);
         machineType.click();
-        driver.findElement(By.id(calculator.getMachineType())).click();
+        driver.findElement(By.xpath("//div[contains(text(),\""+ calculator.getMachineType() + "\")]/parent::md-option")).click();
+        logger.info("Select Machine Type");
 
         //Add GPU
         WebElement addGpu = getElement(By.xpath(ADD_GPU),driver);
         addGpu.click();
         driver.findElement(By.id(GPU_NUMBER_BUTTON)).click();
-        driver.findElement(By.id(calculator.getNumberOfGPU())).click();
+        driver.findElement(By.xpath(
+                "//div[contains(text(),\"" + calculator.getNumberOfGPU()
+                        + "\")]/parent::md-option[@ng-repeat=\"item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]\"]"))
+                .click();
+        logger.info("Select GPU Number");
         driver.findElement(By.id(GPU_TYPE_BUTTON)).click();
-        driver.findElement(By.id(calculator.getGPUType())).click();
+        driver.findElement(By.xpath("//div[contains(text(),\""+ calculator.getGPUType() + "\")]/parent::md-option")).click();
+        logger.info("Select GPU Type");
 
         //Local SSD
         WebElement localSsd = getElement(By.id(LOCAL_SSD), driver);
         localSsd.click();
-        driver.findElement(By.id(calculator.getLocalSSD())).click();
+        driver.findElement(By.xpath("//div[contains(text(),\""+ calculator.getLocalSSD() + "\")]/parent::md-option")).click();
+        logger.info("Select Local SSD");
 
         //Data center Location
         WebElement dataCenterLocation = getElement(By.id(DATACENTER_LOCATION), driver);
         dataCenterLocation.click();
-        driver.findElement(By.id(calculator.getDatacenterLocation())).click();
+        driver.findElements(By.xpath("//div[contains(text(),\""+ calculator.getDatacenterLocation()
+                + "\")]/parent::md-option[@ng-repeat=\"item in listingCtrl.fullRegionList\"]"))
+                .get(1).click();
+        logger.info("Select Data center locatiion");
 
         //Committed Usage
         WebElement committedUsage = getElement(By.id(COMMITTED_USAGE), driver);
         committedUsage.click();
-        driver.findElement(By.id(calculator.getCommittedUsage())).click();
+        driver.findElements(By.xpath("//div[contains(text(),\""+ calculator.getCommittedUsage() + "\")]/parent::md-option"))
+                .get(1).click();
 
         //Press button ADD TO ESTIMATE
         WebElement submitButton = getElement(By.xpath(SUBMIT_BUTTON), driver);

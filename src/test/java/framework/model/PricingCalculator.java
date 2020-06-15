@@ -3,7 +3,7 @@ package framework.model;
 public class PricingCalculator {
     private String numberOfInstances;
     private String text;
-    private String operatingSystem;
+    private String operationSystem;
     private String machineClass;
     private String machineType;
     private String numberOfGPU;
@@ -21,12 +21,12 @@ public class PricingCalculator {
         return this;
     }
 
-    public String getOperatingSystem() {
-        return operatingSystem;
+    public String getOperationSystem() {
+        return operationSystem;
     }
 
-    public PricingCalculator setOperatingSystem(String operatingSystem) {
-        this.operatingSystem = operatingSystem;
+    public PricingCalculator setOperationSystem(String operationSystem) {
+        this.operationSystem = operationSystem;
         return this;
     }
 
