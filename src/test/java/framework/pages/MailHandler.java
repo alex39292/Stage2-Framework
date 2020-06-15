@@ -2,10 +2,14 @@ package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 
 public class MailHandler extends AbstractPage{
+    private static final String MAIL_ADDRESS = "eposta_adres";
+    private static final String MAIL = "//div[@class='gonderen' and text() = 'Google Cloud Sales']";
+    private static final String MAIL_DATA = "//table[@class = 'quote']/tbody/tr[2]/td[2]/h3";
+    private static final String URL_TO_MAIL_HANDLER = "https://lroid.com/ru/";
+
     private String mailAddress;
     private String mailPageTab;
 
@@ -24,7 +28,7 @@ public class MailHandler extends AbstractPage{
     }
 
     public void clickReceivedMail() {
-        ((WebElement) getElement(By.xpath(MAIL), driver)).click();
+        (getElement(By.xpath(MAIL), driver)).click();
 
         logger.info("New mail message has been clicked");
     }

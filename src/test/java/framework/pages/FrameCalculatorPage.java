@@ -6,6 +6,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FrameCalculatorPage extends AbstractPage {
+    private static final String GPU_NUMBER_BUTTON = "select_value_label_335";
+    private static final String GPU_TYPE_BUTTON = "select_value_label_336";
+    private static final String SEND_MAIL_BUTTON = "email_quote";
+    private static final String TABLE_FROM_BUTTON = "//b[@class = 'ng-binding']";
+    private static final String EMAIL_INPUT = "//input[@type=\"email\"]";
+    private static final String SEND_EMAIL_BUTTON = "md-dialog-actions.layout-row > button:nth-child(2)";
+    private static final String NUMBER_OF_INSTANCES = "input_58";
+    private static final String INSTANCE_FOR = "input_59";
+    private static final String OPERATION_SYSTEM = "select_value_label_51";
+    private static final String VM_CLASS = "select_value_label_52";
+    private static final String MACHINE_TYPE = "select_83";
+    private static final String ADD_GPU = "//div[@class = 'md-container md-ink-ripple']";
+    private static final String LOCAL_SSD = "select_170";
+    private static final String DATACENTER_LOCATION = "select_85";
+    private static final String COMMITTED_USAGE = "select_92";
+    private static final String SUBMIT_BUTTON = "//button[@class = 'md-raised md-primary cpc-button md-button md-ink-ripple']";
     private String estimateFromButton;
 
     public FrameCalculatorPage(WebDriver driver) {
@@ -15,30 +31,30 @@ public class FrameCalculatorPage extends AbstractPage {
     //Add some data to Google Cloud Pricing Calculator form
     private void addToEstimate(PricingCalculator calculator) {
         //Number of instances field
-        WebElement numberOfInstances = (WebElement) getElement(By.id(NUMBER_OF_INSTANCES),driver);
+        WebElement numberOfInstances = getElement(By.id(NUMBER_OF_INSTANCES),driver);
         numberOfInstances.sendKeys(calculator.getNumberOfInstances());
 
         //Instance For field, any text is allowed here
-        WebElement instanceFor = (WebElement) getElement(By.id(INSTANCE_FOR),driver);
+        WebElement instanceFor = getElement(By.id(INSTANCE_FOR),driver);
         instanceFor.sendKeys(calculator.getText());
 
         //Operation System/Software
-        WebElement operationSystem = (WebElement) getElement(By.id(OPERATION_SYSTEM),driver);
+        WebElement operationSystem = getElement(By.id(OPERATION_SYSTEM),driver);
         operationSystem.click();
         driver.findElement(By.id(calculator.getOperatingSystem())).click();
 
         //Machine Class
-        WebElement vmClass = (WebElement) getElement(By.id(VM_CLASS),driver);
+        WebElement vmClass = getElement(By.id(VM_CLASS),driver);
         vmClass.click();
         driver.findElement(By.id(calculator.getMachineClass())).click();
 
         //Machine Type
-        WebElement machineType = (WebElement) getElement(By.id(MACHINE_TYPE),driver);
+        WebElement machineType = getElement(By.id(MACHINE_TYPE),driver);
         machineType.click();
         driver.findElement(By.id(calculator.getMachineType())).click();
 
         //Add GPU
-        WebElement addGpu = (WebElement) getElement(By.xpath(ADD_GPU),driver);
+        WebElement addGpu = getElement(By.xpath(ADD_GPU),driver);
         addGpu.click();
         driver.findElement(By.id(GPU_NUMBER_BUTTON)).click();
         driver.findElement(By.id(calculator.getNumberOfGPU())).click();
@@ -46,22 +62,22 @@ public class FrameCalculatorPage extends AbstractPage {
         driver.findElement(By.id(calculator.getGPUType())).click();
 
         //Local SSD
-        WebElement localSsd = (WebElement) getElement(By.id(LOCAL_SSD), driver);
+        WebElement localSsd = getElement(By.id(LOCAL_SSD), driver);
         localSsd.click();
         driver.findElement(By.id(calculator.getLocalSSD())).click();
 
         //Data center Location
-        WebElement dataCenterLocation = (WebElement) getElement(By.id(DATACENTER_LOCATION), driver);
+        WebElement dataCenterLocation = getElement(By.id(DATACENTER_LOCATION), driver);
         dataCenterLocation.click();
         driver.findElement(By.id(calculator.getDatacenterLocation())).click();
 
         //Committed Usage
-        WebElement committedUsage = (WebElement) getElement(By.id(COMMITTED_USAGE), driver);
+        WebElement committedUsage = getElement(By.id(COMMITTED_USAGE), driver);
         committedUsage.click();
         driver.findElement(By.id(calculator.getCommittedUsage())).click();
 
         //Press button ADD TO ESTIMATE
-        WebElement submitButton = (WebElement) getElement(By.xpath(SUBMIT_BUTTON), driver);
+        WebElement submitButton = getElement(By.xpath(SUBMIT_BUTTON), driver);
         submitButton.click();
         logger.info("Button Add to estimate has been pressed");
     }

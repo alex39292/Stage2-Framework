@@ -1,16 +1,19 @@
 package framework.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
+import framework.service.TestDataReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 
-abstract class AbstractPage implements ConstantsKeeper {
-    WebDriver driver;
+abstract class AbstractPage {
+    protected static final Logger logger = LogManager.getRootLogger();
+    protected static final String SEARCHING_TEXT = TestDataReader.getTestData("cloudgoogle.searchingField");
+    protected static final int WAIT_TIMEOUT_SECONDS = 40;
+    protected WebDriver driver;
 
     AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -27,7 +30,7 @@ abstract class AbstractPage implements ConstantsKeeper {
         return true;
     }
 
-    protected static Object getElement(By by, WebDriver driver) {
+    protected static WebElement getElement(By by, WebDriver driver) {
         if (existsElement(by,driver)) {
             return driver.findElement(by);
         }

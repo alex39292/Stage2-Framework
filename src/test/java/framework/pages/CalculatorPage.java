@@ -1,9 +1,12 @@
 package framework.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CalculatorPage extends AbstractPage{
+    private static final By IFRAME = By.tagName("iframe");
+    private static final String URL_TO_GOOGLE_CALCULATOR = "https://cloud.google.com/products/calculator";
 
     public CalculatorPage(WebDriver driver) {
         super(driver);
