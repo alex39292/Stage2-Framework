@@ -2,7 +2,6 @@ package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class CalculatorPage extends AbstractPage{
     private static final By IFRAME = By.tagName("iframe");
@@ -16,13 +15,13 @@ public class CalculatorPage extends AbstractPage{
         logger.info("Calculator page has been opened");
 
           while(existsElement(IFRAME, driver)) {
-              if (driver.findElement(IFRAME).getAttribute("id").equals("MyFrame"))
+              if (driver.findElement(IFRAME).getAttribute("id").equals("MyFrame")) {
                   break;
+              }
               logger.info("Switching iframes");
-              driver.get(((WebElement) getElement(IFRAME, driver)).getAttribute("src"));
+              driver.get((getElement(IFRAME, driver)).getAttribute("src"));
           }
-          logger.info("Switched to needed iframe");
-
+//
         return new FrameCalculatorPage(driver);
     }
 

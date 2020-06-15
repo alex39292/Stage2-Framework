@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 abstract class AbstractPage {
-    protected static final Logger logger = LogManager.getRootLogger();
     protected static final String SEARCHING_TEXT = TestDataReader.getTestData("cloudgoogle.searchingField");
     protected static final int WAIT_TIMEOUT_SECONDS = 40;
+    protected Logger logger = LogManager.getRootLogger();
     protected WebDriver driver;
 
     AbstractPage(WebDriver driver) {
